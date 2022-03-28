@@ -19,6 +19,21 @@ launch_angle = launch_angle * pi / 180
 
 def calculate_height(horizontal_displacement, angle, starting_velocity, starting_height
                      , gravitational_acceleration=9.80665):
+    """
+    Calculates the height of a projectile path given initial conditions
+    :param horizontal_displacement: Difference in horizontal position from start to end (in m)
+    :param angle: float
+        Launch angle (in rad)
+    :param starting_velocity: float
+        Launch velocity (in m/s)
+    :param starting_height: float
+        Launch height (in m)
+    :param gravitational_acceleration:  float, optimal
+        Acceleration due to gravity (in m/s^2)
+    :return:
+        height, float
+        Maximum height of the projectile path
+    """
     height = horizontal_displacement * tan(angle) \
              - 1 / (2 * starting_velocity ** 2) * gravitational_acceleration * horizontal_displacement ** 2 / ((cos(angle)) ** 2) \
              + starting_height
