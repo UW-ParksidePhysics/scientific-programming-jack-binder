@@ -8,9 +8,9 @@ for sigma = sigmas
 end
 plot(x,ys)
 xlabel('x')
-ylabel('phi(x-5),sigma')
+ylabel('\phi(x-5,\sigma)')
 legend('0.5','1.0','1.5')
-line(x,ys,'Color','red','LineStyle','- -')
+%line(x,ys,'Color','red','LineStyle','- -')
 
 
 
