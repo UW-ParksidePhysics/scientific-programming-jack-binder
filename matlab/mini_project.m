@@ -18,3 +18,7 @@
 %	Each function contains help text: https://www.mathworks.com/help/matlab/matlab_prog/add-help-for-your-program.html
 
 %
+url = 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/';
+data = webread(url);
+whos data
+
