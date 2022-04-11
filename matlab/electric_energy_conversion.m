@@ -13,23 +13,15 @@
 %the formula. I can visualize this problem through a graph of energy 
 %converted vs radius.
 
-% Simulation parameters
+%Parameters
 current_density = 10.0;
 voltage = 2; % volts
 time = 120.0; % sec
 
-% Computed parameters (from simulation parameters)
-%	These are values that do not change later in the script
-%	and are calculated from formulas using the simulation parameters
+%Creates matrix of radii
 radii = 0.1:0.1:5.0;
 
-% Function calls and simple calculations for:
-%	data read-in
-%	simulation solution 
-%	visualization
-
-
-%The current = integral of current density time area of cross section of 
+%The current = integral of current density times area of cross section of 
 %wire
 %area of the cross sectional = 2*pi*radius
 %since the current density, 2, and pi are constants, they can be taken 
@@ -39,28 +31,22 @@ radii = 0.1:0.1:5.0;
 
 %Finding the consant value
 constant = (current_density * 2 * pi)/ 2;
-disp(constant)
-%Finding different values of radii squared
+
+%Creates matrix of radii^2
 radii_squared = radii.^2;
-disp(radii_squared)
 
-
+%Creates matrix of current values
 current = constant.* radii_squared;
-disp(current)
 
+%Creates matrix of energy values
 %energy converted = voltage * time * current
-
 energy = (voltage*time).*current;
-disp(energy)
 
-disp(energy)
-
+%creates graph
 plot(radii,energy)
+xlabel('Radii(cm)')
+ylabel('Thermal Energy Converted')
 
-
-%for radius = radii
-    %radius^4;
-%end
 % Function definitions for simulation solution & visualization
 %	Each function contains help text: https://www.mathworks.com/help/matlab/matlab_prog/add-help-for-your-program.html
 
