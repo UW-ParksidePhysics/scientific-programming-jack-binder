@@ -19,7 +19,14 @@ voltage = 2; % volts
 time = 120.0; % sec
 
 %Creates matrix of radii
-radii = 0.1:0.1:5.0;
+%radii = 0.1:0.1:5.0;
+%disp(radii)
+wire_gauges_table = readtable('wireGauges.txt');
+diameter_mm = wire_gauges_table(:,3);
+radii_mm = diamter_mm./2;
+radii_cm = radii_mm./10;
+disp(radii_cm)
+
 
 %The current = integral of current density times area of cross section of 
 %wire
@@ -45,13 +52,13 @@ energy = (voltage*time).*current;
 %creates graph
 plot(radii,energy)
 xlabel('Radii(cm)')
-ylabel('Thermal Energy Converted')
+ylabel('Thermal Energy Converted (J)')
 
 % Function definitions for simulation solution & visualization
 %	Each function contains help text: https://www.mathworks.com/help/matlab/matlab_prog/add-help-for-your-program.html
 
 %
-url = 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/';
+url = 'http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html';
 data = webread(url);
 whos data
 
