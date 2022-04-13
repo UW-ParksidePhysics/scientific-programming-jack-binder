@@ -55,3 +55,25 @@ end
 url = 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/'; 
 %data = webread(url); https://www.nasa.gov/audience/foreducators/k-4/features/F_Measuring_the_Distance_Student_Pages.html
 whos data
+
+
+
+%Review
+%Question 1: The code does run without any errors
+%Question 2: The graph lack information. The axis should be labeled and there should be a legend to make it easier to understand
+%Question 3: The code was a little tricky to read but that was because, at the time I reviewed it, he commented a lot out and I think he did that just 
+           % to have a program with an acceptable output and he'll go back and bring those commented lines back in
+%Question 4: The intro at the top clearly states what he's trying to solve. If I were him, I would make comments describing what each variable means 
+%Question 5: The variables do describe what they are, but as mentioned in the previous questions, he should describe what they are as the variables 
+           % used in his program aren't necessarily common knowledge
+%Question 6: It's hard to say at the moment because most of his variables are commented out. However, by the looks of it, the variables that he'll use
+           % will give him the solution he needs
+%Question 7: As of right now, the visualization doesn't show the solution, but once he adds more information to the graph, then I think you'll be able 
+           % to see the solution
+
+
+
+
+
+
+
