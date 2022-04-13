@@ -14,33 +14,32 @@
 %converted vs radius.
 
 %Parameters
-current_density = 10.0;
+current_density = 10.0; 
 voltage = 2; % volts
 time = 120.0; % sec
 
-%Creates matrix of radii
-%radii = 0.1:0.1:5.0;
-%disp(radii)
+%Pulls table from website 
 wire_gauges_table = readtable('wireGauges.txt');
-diameter_mm = wire_gauges_table(:,3);
-radii_mm = diamter_mm./2;
+%Pulls column from table and coverts it to an array
+diameter_mm = table2array(wire_gauges_table(:,3));
+%Finds radius
+radii_mm = diameter_mm./2;
+%Converts radii to from mm to cm
 radii_cm = radii_mm./10;
-disp(radii_cm)
 
+%Equation to find current
+%i = int(J*dA)
+%i = int(J*2*pi*r)
+%i = J*2*pi*int(r)
+%i = J*2*pi*((r^2)/2)
+%i = [(J*2*pi)/2]*(r^2)
 
-%The current = integral of current density times area of cross section of 
-%wire
-%area of the cross sectional = 2*pi*radius
-%since the current density, 2, and pi are constants, they can be taken 
-%outside of the integral
-%The only thing left inside of the integral is r * dr which becomes (r^2)/2
-%The current = (constant/2) * r^2 
-
-%Finding the consant value
+%Finding the constant value
+%The constant = (J*2*pi)/2
 constant = (current_density * 2 * pi)/ 2;
 
 %Creates matrix of radii^2
-radii_squared = radii.^2;
+radii_squared = radii_cm.^2;
 
 %Creates matrix of current values
 current = constant.* radii_squared;
@@ -50,15 +49,7 @@ current = constant.* radii_squared;
 energy = (voltage*time).*current;
 
 %creates graph
-plot(radii,energy)
+plot(radii_cm,energy)
 xlabel('Radii(cm)')
 ylabel('Thermal Energy Converted (J)')
-
-% Function definitions for simulation solution & visualization
-%	Each function contains help text: https://www.mathworks.com/help/matlab/matlab_prog/add-help-for-your-program.html
-
-%
-url = 'http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html';
-data = webread(url);
-whos data
-
+legend("Amount of Electrical Energy Converted to Thermal Energy")
