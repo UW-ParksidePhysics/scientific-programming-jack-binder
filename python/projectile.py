@@ -5,6 +5,7 @@
 from python.energy import kinetic_energy, gravitational_potential_energy
 import numpy as np
 import matplotlib.pyplot as plt
+from urllib import request
 
 
 def calculate_all_energies(initial_velocity, initial_height, gravitational_acceleration, mass):
@@ -59,13 +60,19 @@ projectile_initial_height = 5.0  # m
 standard_gravity = 9.80665  # m/s
 
 planetary_data = {
-    'Earth': 9.80665,
-    'Mars': 3.71,
+    'Earth': {'surface acceleration': 9.80665, 'radius': 6.3568e6},
+    'Mars': {'surface acceleration': 3.71, 'radius': 3.3962e6},
 }
 
-for planet in planetary_data:
-    acceleration = planetary_data[planet]
-    times, energies = calculate_all_energies(projectile_initial_velocity, projectile_initial_height,
-                                             acceleration, projectile_mass)
-    plot_all_energies(energies, times, planet=planet)
+# url = 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/index.htm'
+url = 'http://www.python.org'
+with request.urlopen(url) as file:
+    print(file.read())
+
+
+# for planet in planetary_data:
+#     acceleration = planetary_data[planet]['surface acceleration']
+#     times, energies = calculate_all_energies(projectile_initial_velocity, projectile_initial_height,
+#                                              acceleration, projectile_mass)
+#     plot_all_energies(energies, times, planet=planet)
 
