@@ -44,7 +44,7 @@ def plot_all_energies(all_energies, times, planet=''):
     plt.xlabel(r'$t$ (s)')
     plt.ylabel(r'$E, T, U$ (J)')
     if len(planet) > 0:
-        plt.text(planet, np.mean(times, 0.5*np.mean(all_energies[2]), fontsize=18))
+        plt.text(np.mean(times), 0.5*np.mean(all_energies[2]), planet, fontsize=18)
     plt.legend()
     plt.show()
 
@@ -67,5 +67,5 @@ for planet in planetary_data:
     acceleration = planetary_data[planet]
     times, energies = calculate_all_energies(projectile_initial_velocity, projectile_initial_height,
                                              acceleration, projectile_mass)
-    plot_all_energies(energies, times)
+    plot_all_energies(energies, times, planet=planet)
 
