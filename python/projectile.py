@@ -24,7 +24,7 @@ def calculate_all_energies(initial_velocity, initial_height, gravitational_accel
                                                         gravitational_acceleration=gravitational_acceleration)
     total_energies = kinetic_energies + potential_energies
 
-    return [kinetic_energies, potential_energies, total_energies]
+    return times, [kinetic_energies, potential_energies, total_energies]
 
 
 def height(time, initial_height, initial_velocity, acceleration):
@@ -37,18 +37,22 @@ def velocity(time, initial_velocity, acceleration):
     return final_velocity
 
 
-def plot_all_energies(all_energies, times):
+def plot_all_energies(all_energies, times, planet=''):
     plt.plot(times, all_energies[0], color='red', label=r'$T$')
     plt.plot(times, all_energies[1], color='green', label=r'$U$')
     plt.plot(times, all_energies[2], color='black', label=r'$E$')
     plt.xlabel(r'$t$ (s)')
     plt.ylabel(r'$E, T, U$ (J)')
+    if len(planet) > 0:
+        plt.text(planet, np.mean(times, 0.5*np.mean(all_energies[2]), fontsize=18))
     plt.legend()
     plt.show()
 
     return
 
 # Parameters
+
+
 projectile_mass = 2.0  # kg
 projectile_initial_velocity = 3.0  # m/s
 projectile_initial_height = 5.0  # m
@@ -61,6 +65,7 @@ planetary_data = {
 
 for planet in planetary_data:
     acceleration = planetary_data[planet]
-    times, energies = calculate_all_energies(projectile_initial_velocity, projectile_initial_height, acceleration, projectile_mass)
+    times, energies = calculate_all_energies(projectile_initial_velocity, projectile_initial_height,
+                                             acceleration, projectile_mass)
     plot_all_energies(energies, times)
 
