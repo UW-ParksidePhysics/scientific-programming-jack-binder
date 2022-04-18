@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 # needed are current density, radius of the wire, potential, and time. The
 # main physical principle in this problem is energy conversion. The
 # function needed for this program to operate correctly is an equation that
-# can that pull and use at least one input value from a table and then
+# can pull and use at least one input value from a table and then
 # correctly calculate the equation. The vector quantity in this problem
-# would be the current density. I will create my own data table filled with
-# different radii values of the wire and will have %to pull each one into
+# would be the current density. I will read in a data table that has many
+# difference radii values of wires, and I  will have to pull each one into
 # the formula. I can visualize this problem through a graph of energy
 # converted vs radius.
+
 
 # Parameters
 current_density = 10.0
