@@ -27,9 +27,10 @@ wire_gauges_table = "wireGauges.txt"
 diameter_mm = []
 with open("wireGauges.txt") as file:
     for line in file:
-        print(line.split()[2])
-        # diameter_mm.append(diam)
-print(diameter_mm)
+        if len(line.split()) > 2:
+            diam = float(line.split()[2])
+            diameter_mm.append(diam)
+diameter_mm = np.array(diameter_mm)
 # Finds radius
 radii_mm = diameter_mm/2
 # Converts radii to from mm to cm
@@ -57,8 +58,10 @@ current = constant * radii_squared
 energy = (voltage*time)*current
 
 # creates graph
+plt.scatter(radii_cm, energy, label='Radii')
 plt.plot(radii_cm, energy)
+plt.title("Amount of Electrical Energy Converted to Thermal Energy")
 plt.xlabel('Radii(cm)')
 plt.ylabel('Thermal Energy Converted (J)')
-plt.legend("Amount of Electrical Energy Converted to Thermal Energy")
+plt.legend(loc="upper left")
 plt.show()
