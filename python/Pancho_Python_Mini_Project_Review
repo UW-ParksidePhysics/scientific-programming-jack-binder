@@ -1,1 +1,102 @@
+%%%% RENAME from mini_project.m to (your_project_short_name).m
+% Comments describing mini-project ~ 100-200 words
+%This program would be able to calculate the distance between the earth 
+%and the sun at 4 different points around the orbital axis as it goes 
+%around the sun. It is done by using as input of kepler 3rd law and 
+%equation of motion. More specifically finding the distance(m) at 4 
+%different seasons within a 1 year span. We already know two positions distance
+%and will find a function to help calculate at 2-4 other points. The earth travels
+%around the sun in an orbital function. 
+% Simulation parameters
+%	These are values particular to the simulation 
+%	that do not change later in the script
+%rp = apoapsis
+
+%ra = periapsis
+% Computed parameters (from simulation parameters)
+%	These are values that do not change later in the script
+%	and are calculated from formulas using the simulation parameters
+% Values: rp = 1 and ra=2 For the meantime
+
+%d = distance
+% Function calls and simple calculations for:
+%	data read-in
+%	simulation solution 
+%	visualization
+%The two points at which the code would read would be aphelion(152,100 km) and Perihelion(147,300 km). Moving in an orbital motion around the sun to find 2 
+%more points. 
+
+%Data read in would be the distances mentioned previosuly. 
+
+%Finding c, a, and b in which c^2=sqrt(a^2 + b^2)
+
+
+% Function definitions for simulation solution & visualization
+%	Each function contains help text: https://www.mathworks.com/help/matlab/matlab_prog/add-help-for-your-program.html
+%Focal Distance c = (1/2)*(ra - rp)
+
+%semi major axis a = (1/2)*(ra + rp)
+
+%Graph
+
+
+% 
+% url = 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/'; 
+% %data = webread(url); https://www.nasa.gov/audience/foreducators/k-4/features/F_Measuring_the_Distance_Student_Pages.html
+% whos data
+
+ra = 147300
+rp = 152100
+axes = calculate_elipse_semi_axes([ra,rp])
+plot_ellipse(axes)
+
+function semi_axes = calculate_elipse_semi_axes(apsides)
+    semi_major_axis = mean(apsides)
+    focal_length = 0.5*diff(apsides)
+    semi_minor_axis = sqrt(semi_major_axis^2 - focal_length^2)
+    semi_axes = [semi_major_axis,semi_minor_axis] 
+end 
+
+
+function ellipse_plot = plot_ellipse(semi_axes)
+    thetas = (0:.1:2.*pi);
+    xs = semi_axes(1).*cos(thetas);
+    ys = semi_axes(2).*sin(thetas);
+    plot(xs,ys)
+
+end
+
+%creates graph
+hold off
+scatter()
+plot(,)
+hold off
+xlabled('')
+ylabled('')
+legend("")
+
+
+
+
+
+
+# REVIEW
+# 1.) The code did have some errors but by the looks of it, he's still working on converting everything.
+# 2.) It's a lot more understandable since the last time I reviewed it. He has a lot more functions now that I think will give him a much better output once
+# he finishes converting
+# 3.) It's easier to read than last time but I would delete all the comments that were already a part of the orginal file
+# 4.) A lot of his comments seem to be laying out his thought process which is a great first step and once he actually puts those thoughts into code 
+# format, he should be good. 
+# 5.) The variable names make sense as far as what's being assigned to them, but having no previous knowledge on this topic, it's a little hard to 
+# understand
+# 6.) I think that he has everything he needs in order to solve the problem. He now just has to execute. 
+# 7.) He's gotta work on converting it so that way his functions will run without any errors
+# 8.) Code does not create visualization
+
+
+
+
+
+
+
 
