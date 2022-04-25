@@ -1,0 +1,192 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>electric_energy_conversion</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-04-25"><meta name="DC.source" content="electric_energy_conversion.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%I propose to solve the problem of determining how much electrical energy</span>
+<span class="comment">%is converted into thermal energy inside a variety of wire sizes under a</span>
+<span class="comment">%certain time period. The reason why this problem interests me is that</span>
+<span class="comment">%I'm fascinated by energy conversion and the idea of using it to create a</span>
+<span class="comment">%more sustainable and practical world. In energy conversion, the variables</span>
+<span class="comment">%needed are current density, radius of the wire, potential, and time. The</span>
+<span class="comment">%main physical principle in this problem is energy conversion. The</span>
+<span class="comment">%function needed for this program to operate correctly is an equation that</span>
+<span class="comment">%can pull and use at least one input value from a table and then</span>
+<span class="comment">%correctly calculate the equation. The vector quantity in this problem</span>
+<span class="comment">%would be the current density. I will read in a data table that has many</span>
+<span class="comment">%difference radii values of wires and I  will have to pull each one into</span>
+<span class="comment">%the formula. I can visualize this problem through a graph of energy</span>
+<span class="comment">%converted vs radius.</span>
+
+<span class="comment">%Parameters</span>
+current_density = 10.0;
+voltage = 2; <span class="comment">% volts</span>
+time = 120.0; <span class="comment">% sec</span>
+
+<span class="comment">%Pulls table from website</span>
+wire_gauges_table = readtable(<span class="string">'wireGauges.txt'</span>);
+<span class="comment">%Pulls column from table and coverts it to an array</span>
+diameter_mm = table2array(wire_gauges_table(:,3));
+<span class="comment">%Finds radius</span>
+radii_mm = diameter_mm./2;
+<span class="comment">%Converts radii to from mm to cm</span>
+radii_cm = radii_mm./10;
+
+<span class="comment">%Equation to find current</span>
+<span class="comment">%i = int(J*dA)</span>
+<span class="comment">%i = int(J*2*pi*r)</span>
+<span class="comment">%i = J*2*pi*int(r)</span>
+<span class="comment">%i = J*2*pi*((r^2)/2)</span>
+<span class="comment">%i = [(J*2*pi)/2]*(r^2)</span>
+
+<span class="comment">%Finding the constant value</span>
+<span class="comment">%The constant = (J*2*pi)/2</span>
+constant = (current_density * 2 * pi)/ 2;
+
+<span class="comment">%Creates matrix of radii^2</span>
+radii_squared = radii_cm.^2;
+
+<span class="comment">%Creates matrix of current values</span>
+current = constant.* radii_squared;
+
+<span class="comment">%Creates matrix of energy values</span>
+<span class="comment">%energy converted = voltage * time * current</span>
+energy = (voltage*time).*current;
+
+<span class="comment">%creates graph</span>
+hold <span class="string">on</span>
+scatter(radii_cm, energy,<span class="string">'filled'</span>)
+plot(radii_cm,energy)
+hold <span class="string">off</span>
+xlabel(<span class="string">'Radii(cm)'</span>)
+ylabel(<span class="string">'Thermal Energy Converted (J)'</span>)
+title(<span class="string">"Amount of Electrical Energy Converted to Thermal Energy"</span>)
+legend(<span class="string">"Radii"</span>)
+</pre><img vspace="5" hspace="5" src="electric_energy_conversion_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%I propose to solve the problem of determining how much electrical energy
+%is converted into thermal energy inside a variety of wire sizes under a
+%certain time period. The reason why this problem interests me is that
+%I'm fascinated by energy conversion and the idea of using it to create a
+%more sustainable and practical world. In energy conversion, the variables
+%needed are current density, radius of the wire, potential, and time. The
+%main physical principle in this problem is energy conversion. The
+%function needed for this program to operate correctly is an equation that
+%can pull and use at least one input value from a table and then
+%correctly calculate the equation. The vector quantity in this problem
+%would be the current density. I will read in a data table that has many 
+%difference radii values of wires and I  will have to pull each one into
+%the formula. I can visualize this problem through a graph of energy
+%converted vs radius.
+
+%Parameters
+current_density = 10.0;
+voltage = 2; % volts
+time = 120.0; % sec
+
+%Pulls table from website
+wire_gauges_table = readtable('wireGauges.txt');
+%Pulls column from table and coverts it to an array
+diameter_mm = table2array(wire_gauges_table(:,3));
+%Finds radius
+radii_mm = diameter_mm./2;
+%Converts radii to from mm to cm
+radii_cm = radii_mm./10;
+
+%Equation to find current
+%i = int(J*dA)
+%i = int(J*2*pi*r)
+%i = J*2*pi*int(r)
+%i = J*2*pi*((r^2)/2)
+%i = [(J*2*pi)/2]*(r^2)
+
+%Finding the constant value
+%The constant = (J*2*pi)/2
+constant = (current_density * 2 * pi)/ 2;
+
+%Creates matrix of radii^2
+radii_squared = radii_cm.^2;
+
+%Creates matrix of current values
+current = constant.* radii_squared;
+
+%Creates matrix of energy values
+%energy converted = voltage * time * current
+energy = (voltage*time).*current;
+
+%creates graph
+hold on
+scatter(radii_cm, energy,'filled')
+plot(radii_cm,energy)
+hold off
+xlabel('Radii(cm)')
+ylabel('Thermal Energy Converted (J)')
+title("Amount of Electrical Energy Converted to Thermal Energy")
+legend("Radii")
+
+##### SOURCE END #####
+--></body></html>
