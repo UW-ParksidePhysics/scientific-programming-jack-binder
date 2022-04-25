@@ -1,15 +1,15 @@
 %I propose to solve the problem of determining how much electrical energy
 %is converted into thermal energy inside a variety of wire sizes under a
-%certain time period. The reason why this problem interests me is because
+%certain time period. The reason why this problem interests me is that
 %I'm fascinated by energy conversion and the idea of using it to create a
 %more sustainable and practical world. In energy conversion, the variables
 %needed are current density, radius of the wire, potential, and time. The
 %main physical principle in this problem is energy conversion. The
 %function needed for this program to operate correctly is an equation that
-%can that pull and use at least one input value from a table and then
+%can pull and use at least one input value from a table and then
 %correctly calculate the equation. The vector quantity in this problem
-%would be the current density. I will create my own data table filled with
-%different radii values of the wire and will have %to pull each one into
+%would be the current density. I will read in a data table that has many 
+%difference radii values of wires and I  will have to pull each one into
 %the formula. I can visualize this problem through a graph of energy
 %converted vs radius.
 
@@ -55,4 +55,5 @@ plot(radii_cm,energy)
 hold off
 xlabel('Radii(cm)')
 ylabel('Thermal Energy Converted (J)')
-legend("Amount of Electrical Energy Converted to Thermal Energy")
+title("Amount of Electrical Energy Converted to Thermal Energy")
+legend("Radii")
