@@ -1,3 +1,3 @@
 import vpython as vp
 
-vp.sphere()
+vp.sphere(radius=0.5)
