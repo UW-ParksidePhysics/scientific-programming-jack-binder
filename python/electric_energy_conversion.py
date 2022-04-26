@@ -16,52 +16,77 @@ import matplotlib.pyplot as plt
 # converted vs radius.
 
 
-# Parameters
-current_density = 10.0
-voltage = 2  # volts
-time = 120.0  # sec
+def initialize_parameters():
+    # Parameters
+    current_density = 10.0
+    voltage = 2  # volts
+    time = 120.0  # sec
+    return current_density, voltage, time
 
-# Pulls table from website
-wire_gauges_table = "wireGauges.txt"
-# Pulls column from table and coverts it to an array
-diameter_mm = []
-with open("wireGauges.txt") as file:
-    for line in file:
-        if len(line.split()) > 2:
-            diam = float(line.split()[2])
-            diameter_mm.append(diam)
-diameter_mm = np.array(diameter_mm)
-# Finds radius
-radii_mm = diameter_mm/2
-# Converts radii to from mm to cm
-radii_cm = radii_mm/10
 
-# Equation to find current
-# i = int(J*dA)
-# i = int(J*2*pi*r)
-# i = J*2*pi*int(r)
-# i = J*2*pi*((r^2)/2)
-# i = [(J*2*pi)/2]*(r^2)
+def read_wire_date():
+    # Pulls table from website
+    # wire_gauges_table = "wireGauges.txt"
+    # Pulls column from table and coverts it to an array
+    diameter_mm = []
+    with open("wireGauges.txt") as file:
+        for line in file:
+            if len(line.split()) > 2:
+                diam = float(line.split()[2])
+                diameter_mm.append(diam)
+    diameter_mm = np.array(diameter_mm)
+    # Finds radius
+    radii_mm = diameter_mm / 2
+    # Converts radii from mm to m
+    radii_m = radii_mm * 0.001
+    return radii_m
 
-# Finding the constant value
-# The constant = (J*2*pi)/2
-constant = (current_density * 2 * np.pi) / 2
 
-# Creates matrix of radii^2
-radii_squared = radii_cm**2
+def calculate_energy(radii_m, time=120, voltage=2.0, current_density=10.0):
+    initialize_parameters()
+    # Equation to find current
+    # i = int(J*dA)
+    # i = int(J*2*pi*r)
+    # i = J*2*pi*int(r)
+    # i = J*2*pi*((r^2)/2)
+    # i = [(J*2*pi)/2]*(r^2)
+    radii_cm = radii/10
 
-# Creates matrix of current values
-current = constant * radii_squared
+    # Finding the constant value
+    # The constant = (J*2*pi)/2
+    constant = (current_density * 2 * np.pi) / 2
 
-# Creates matrix of energy values
-# energy converted = voltage * time * current
-energy = (voltage*time)*current
+    # Creates matrix of radii^2
+    radii_squared = radii_cm ** 2
 
-# creates graph
-plt.scatter(radii_cm, energy, label='Radii')
-plt.plot(radii_cm, energy)
-plt.title("Amount of Electrical Energy Converted to Thermal Energy")
-plt.xlabel('Radii(cm)')
-plt.ylabel('Thermal Energy Converted (J)')
-plt.legend(loc="upper left")
-plt.show()
+    # Creates matrix of current values
+    current = constant * radii_squared
+
+    # Creates matrix of energy values
+    # energy converted = voltage * time * current
+    converted_energy = (voltage * time) * current
+    return converted_energy
+
+
+def plot_data(radii_m, converted_energy):
+    # creates graph
+    plt.scatter(radii_m, converted_energy, label='Radii')
+    plt.plot(radii_m, converted_energy)
+    plt.title("Amount of Electrical Energy Converted to Thermal Energy")
+    plt.xlabel('Radii(m)')
+    plt.ylabel('Thermal Energy Converted (J)')
+    plt.legend(loc="upper left")
+    plt.show()
+    return
+
+
+if __name__ == "__main__":
+    radii = read_wire_date()
+    parameters = initialize_parameters()
+    energy = calculate_energy(radii)
+    plot_data(radii, energy)
+else:
+    print("Something went wrong")
+
+
+
