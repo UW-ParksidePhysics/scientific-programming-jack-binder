@@ -26,7 +26,6 @@ def initialize_parameters():
 
 def read_wire_date():
     # Pulls table from website
-    # wire_gauges_table = "wireGauges.txt"
     # Pulls column from table and coverts it to an array
     diameter_mm = []
     with open("wireGauges.txt") as file:
@@ -50,7 +49,7 @@ def calculate_energy(radii_m, time=120, voltage=2.0, current_density=10.0):
     # i = J*2*pi*int(r)
     # i = J*2*pi*((r^2)/2)
     # i = [(J*2*pi)/2]*(r^2)
-    radii_cm = radii/10
+    radii_cm = radii_m/10
 
     # Finding the constant value
     # The constant = (J*2*pi)/2
