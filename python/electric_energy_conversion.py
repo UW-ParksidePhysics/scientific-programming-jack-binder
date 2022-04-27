@@ -42,21 +42,19 @@ def read_wire_date():
 
 
 def calculate_energy(radii_m, time=120, voltage=2.0, current_density=10.0):
-    initialize_parameters()
     # Equation to find current
     # i = int(J*dA)
     # i = int(J*2*pi*r)
     # i = J*2*pi*int(r)
     # i = J*2*pi*((r^2)/2)
     # i = [(J*2*pi)/2]*(r^2)
-    radii_cm = radii_m/10
 
     # Finding the constant value
     # The constant = (J*2*pi)/2
     constant = (current_density * 2 * np.pi) / 2
 
     # Creates matrix of radii^2
-    radii_squared = radii_cm ** 2
+    radii_squared = radii_m ** 2
 
     # Creates matrix of current values
     current = constant * radii_squared
@@ -86,6 +84,3 @@ if __name__ == "__main__":
     plot_data(radii, energy)
 else:
     print("Something went wrong")
-
-
-
