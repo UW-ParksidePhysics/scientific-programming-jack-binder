@@ -17,6 +17,6 @@ def fit_curve_array(quadratic_coefficients, min_x, max_x, number_of_points=100):
 if __name__ == "__main__":
     test_coefficients = np.array([1, 0, 0])
     test_min = [-2, 2]
-    curve = fit_curve_array(test_coefficients, test_min[0], test_min[1]) # y = x**2
+    curve = fit_curve_array(test_coefficients, test_min[0], test_min[1])  # y = x**2
     print(curve)
 
