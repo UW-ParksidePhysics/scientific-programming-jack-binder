@@ -3,6 +3,8 @@ from scipy import stats
 
 
 def bivariate_statistics(data):
+    if len(data) != 2 or len(data[0]) <= 1:
+        raise IndexError("Inappropriate Dimensions")
     stat = stats.describe(data)
     mean_y = stat.minmax[0][1]
     x_min, x_max = stat.minmax[0][0], stat.minmax[1][0]
