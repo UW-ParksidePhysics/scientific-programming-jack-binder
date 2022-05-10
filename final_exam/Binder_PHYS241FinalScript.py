@@ -105,4 +105,4 @@ plt.title("Select Wave functions for a Harmonic Potential on a Spatial Grid of 1
 if display_graph:
     plt.show()
 elif not display_graph:
-    plt.savefig("Binder.harmonic.Eigenvector0, 1, 2.png")
+    plt.savefig("Binder.harmonic.Eigenvector1, 2, 3.png")
