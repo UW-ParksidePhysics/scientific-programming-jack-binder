@@ -5,6 +5,8 @@ from fit_curve_array import fit_curve_array
 from plot_data_with_fit import plot_data_with_fit
 from equations_of_state import fit_eos
 from convert_units import convert_units
+from generate_matrix import generate_matrix
+from lowest_eigenvectors import lowest_eigenvectors
 from numpy import linspace
 import matplotlib.pyplot as plt
 
@@ -38,7 +40,8 @@ equilibrium_volume = fit_parameters[3]
 
 def annotate_graph(symbol, crystal_symbol):
     ax.annotate(symbol, xy=(130, 0.001))
-    ax.annotate(r'$ {}\overline{{{}}} {}$'.format(crystal_symbol[0:2], crystal_symbol[3], crystal_symbol[1]), xy=(115, 0))
+    ax.annotate(r'$ {}\overline{{{}}} {}$'.format(crystal_symbol[0:2], crystal_symbol[3], crystal_symbol[1]), xy=(115,
+                                                                                                                  0))
     ax.annotate('K_0={:.6f}GPa'.format(bulk_modulus_gpa), xy=(115, 0.001))
     ax.annotate('V_0={:.3f}A^3/atom'.format(eq_vol), xy=(115, -0.001))
     plt.axvline(eq_vol - array_2[0][array_2[1].index(min(array_2[1]))] * 0.01, color="black", linestyle='-')
@@ -56,8 +59,8 @@ line2, = ax.plot(volumes, fit_eos_curve, color="blue")
 
 x_min = (min(array_2[0]) - (min(array_2[0]) * 0.10))
 x_max = (max(array_2[0]) + (max(array_2[0]) * 0.10))
-y_min = (-0.003)  # (min(array_2[1]) - (min(array_2[0]) * 0.00010))
-y_max = 0.003  # (max(array_2[1]) + (max(array_2[0]) * 0.00010))
+y_min = (-0.003)
+y_max = 0.003
 
 plt.xlim(x_min, x_max)
 plt.ylim(y_min, y_max)
@@ -77,12 +80,6 @@ elif not display_graph:
 
 
 # Visualize Vectors in Space
-from generate_matrix import generate_matrix
-from lowest_eigenvectors import lowest_eigenvectors
-from numpy import linspace
-import matplotlib.pyplot as plt
-
-
 display_graph = False
 potential_name = 'harmonic'
 N_dim = 100
@@ -93,18 +90,17 @@ matrix = generate_matrix(-10, 10, N_dim, potential_name, potential_parameter)
 eigenvalues, eigenvectors = lowest_eigenvectors(matrix, 3)
 
 x = linspace(-10, 10, N_dim)
-line1, = plt.plot(x, eigenvectors[0][0:N_dim])
-line2, = plt.plot(x, eigenvectors[1][0:N_dim])
-line3, = plt.plot(x, eigenvectors[2][0:N_dim])
+line1, = plt.plot(x, eigenvectors[1][0:N_dim])
+line2, = plt.plot(x, eigenvectors[2][0:N_dim])
+line3, = plt.plot(x, eigenvectors[3][0:N_dim])
 
 plt.xlabel("x [a.u.]")
 plt.ylabel("ψ n ( x ) [a.u.]")
-plt.legend((line1, line2, line3), ('ψ1, Ε1 = 0.62414396 a.u.', 'ψ2, Ε2 = 0.87335307 a.u.', 'ψ3, Ε3 = 1.12229893 a.u.'))
+plt.legend((line1, line2, line3), ('ψ1, Ε1 =  a.u.', 'ψ2, Ε2 =  a.u.', 'ψ3, Ε3 =  a.u.'))
 plt.axis([-10, 10, max(eigenvectors[0]) - 2, max(eigenvectors[0]) + 2])
 plt.axhline(color="black")
 plt.text(-9.5, -1.75, "Created by Jack Binder 2022/05/09")
-plt.title("Select Wave functions for a Harmonic Potential on a Spatial Grid of 0, 1, 2 Points")
-
+plt.title("Select Wave functions for a Harmonic Potential on a Spatial Grid of 1, 2, 3 Points")
 
 if display_graph:
     plt.show()
