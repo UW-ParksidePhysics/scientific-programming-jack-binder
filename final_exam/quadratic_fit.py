@@ -11,8 +11,8 @@ def quadratic_fit(data):
     :return:quadratic_coefficients: ndarray, shape (3,)
     Quadratic polynomial coefficients, ordered quadratic term first, then linear term, and constant term last.
     """
-    xs = data[:, 0]
-    ys = data[:, 1]
+    xs = data[0]
+    ys = data[1]
     quadratic_coefficients = np.polyfit(xs, ys, 2)
     return quadratic_coefficients
 
@@ -21,4 +21,3 @@ if __name__ == "__main__":
     test_data = np.array([[0, 0], [1, 1], [2, 4]])
     coefficients = quadratic_fit(test_data)
     print(coefficients)
-
