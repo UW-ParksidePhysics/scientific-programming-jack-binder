@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_data_with_fit(data, fit_curve, data_format="o", fit_format=""):
+def plot_data_with_fit(combined_plot, data, fit_curve, data_format="o", fit_format=""):
     """
     Create a combined scatter and curve plot for the data and the fit polynomial, respectively, using Pyplot's plot
     (Links to an external site.) function
@@ -22,7 +22,7 @@ def plot_data_with_fit(data, fit_curve, data_format="o", fit_format=""):
     A list of Line2D (Links to an external site.) objects representing the plotted data. This is the default return type
     from Pyplot's plot.
     """
-    fig, combined_plot = plt.subplots()
+    # fig, combined_plot = plt.subplots()
     combined_plot.plot(fit_curve[0], fit_curve[1], fit_format)
     combined_plot.plot(data[0], data[1], data_format)
     return combined_plot
