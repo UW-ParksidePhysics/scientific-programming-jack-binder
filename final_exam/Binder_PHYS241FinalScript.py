@@ -8,6 +8,7 @@ from convert_units import convert_units
 from generate_matrix import generate_matrix
 from lowest_eigenvectors import lowest_eigenvectors
 from numpy import linspace
+import numpy as np
 import matplotlib.pyplot as plt
 
 display_graph = True
@@ -28,8 +29,8 @@ statistics = bivariate_statistics(array)
 quad_coefficients = quadratic_fit(array)
 print(quad_coefficients)
 
-min_x = statistics[2]
-max_x = statistics[3]
+#min_x = statistics[2]
+#max_x = statistics[3]
 undo_array = zip(*array)
 array_2 = list(undo_array)
 fit_eos_curve, fit_parameters = fit_eos(array[0], array[1], quad_coefficients,
